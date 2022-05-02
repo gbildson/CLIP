@@ -257,6 +257,11 @@ class CLIP(nn.Module):
                  transformer_layers: int
                  ):
         super().__init__()
+        print('embed_dim:', embed_dim, '\n',
+              'image_resolution:', image_resolution, '\n',
+              'vision_layers:', vision_layers, '\n',
+              'vision_width:', vision_width, '\n',
+              'vision_patch_size:', vision_patch_size, '\n')
 
         self.context_length = context_length
 
@@ -269,6 +274,7 @@ class CLIP(nn.Module):
                 input_resolution=image_resolution,
                 width=vision_width
             )
+            print('path1')
         else:
             vision_heads = vision_width // 64
             self.visual = VisionTransformer(
@@ -279,6 +285,7 @@ class CLIP(nn.Module):
                 heads=vision_heads,
                 output_dim=embed_dim
             )
+            print('path2')
 
         self.transformer = Transformer(
             width=transformer_width,
