@@ -286,6 +286,9 @@ class CLIP(nn.Module):
                 output_dim=embed_dim
             )
             print('path2')
+            print('layers:', layers, '\n',
+                  'heads:', heads, '\n',
+                  'output_dim:', embed_dim)
 
         self.transformer = Transformer(
             width=transformer_width,
